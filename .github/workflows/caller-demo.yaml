@@ -1,0 +1,15 @@
+name: Caller Demo (uses reusable)
+on:
+  workflow_dispatch:
+jobs:
+  prepare:
+    runs-on: self-hosted
+    steps:
+      - name: Simple preparation step
+        run: echo "Preparing to call the reusable workflow..."
+  call-reusable:
+    needs: prepare
+    uses: ./.github/workflows/reusable-echo.yaml
+    with:
+      message: "Hello from the caller workflow!"
+
